@@ -148,6 +148,7 @@ header {
 }
 
 @media (max-width: 600px) {
+
 .button {
     width: 80px;
     height: 80px;
@@ -167,11 +168,46 @@ header {
     font-weight: bold;
     margin-bottom: 20px;
 }
+
+.color{
+    font-size: 10PX;
+}
 .P01 {
     font-size: 4vw; /* 5% من عرض الشاشة */
     margin-bottom: 20px;
 }
+.home-page {
+    height: 100%; /* تعيين الارتفاع ليشغل كامل الشاشة */
+    margin: 0px;
+    padding: 0px;
+    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1731444052/d5wvahypnghbzntge21e.jpg'); /* صورة الخلفية */
+    background-position: bottom; /* تحديد موقع الصورة في أسفل الصفحة */
+    background-attachment: fixed; /* تثبيت الخلفية لتبقى ثابتة عند التمرير */
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: white;
 }
+.nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+    padding: 5px 2px;
+    transition: 0.3s;
+}
+
+.logo img {
+    height: 40px;
+    padding: 0;
+}
+
+}
+
+
 
 .anime-button{
 background-color: #FFD700;
@@ -217,4 +253,14 @@ display: none;
     align-items: flex-end; /* محاذاة كل العناصر إلى اليمين */
     justify-content: center; /* يوسّط العناصر عموديًا */
     padding-right: 20px; /* إضافة مسافة صغيرة عن الحافة اليمنى */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: rgb(116, 116, 116);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 10px;
 }

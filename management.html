@@ -10,28 +10,66 @@
         h1{
             text-align: right;
             color: white; /* لون النص */
-            text-shadow: 3px 3px 10px black, 0 0 15px black; /* الظل */
         }
         p{
             text-align: right;
             color: white; /* لون النص */
-            text-shadow: 3px 3px 10px black, 0 0 15px black; /* الظل */
         }
         .container1{
-            width: 60%;  /* يجعل العرض 70% */
+            flex: 1;
+            width: 50%;  /* يجعل العرض 70% */
             margin-left: auto;  /* يدفع العنصر بالكامل إلى اليمين */
-            padding: 20px;  /* بعض التباعد الداخلي */
-            padding-top: 100PX;
+            justify-content: space-between;
+            
             text-align: right;
             display: flex;
             flex-direction: column; /* يجعل الـ divs متلاصقة عموديًا */
         }
         .item {
-            padding: auto;
-            width: 100%; /* يجعل العناصر تمتد على عرض الصفحة */
-            background-size: cover; /* يجعل الصورة تغطي كامل الـ div */
-            background-position: center; /* يضمن تمركز الصورة بشكل جيد */
-            background-repeat: no-repeat; /* يمنع تكرار الصورة */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(22, 22, 22);
+
+        }
+        .logo1{
+            width: 200PX;
+            background-color: #007bff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            
+        }
+        .text {
+            flex: 1;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .item{
+                flex-direction: column;
+                text-align: center;
+                
+            }
+            
+            .logo1 {
+                margin-bottom: 15px;
+            }
+            
+            .container1 {
+                text-align: center;
+                width: 90%;
+                padding-bottom: 50PX;
+            }
+
+            .container1 h1{
+                font-size: 25PX;
+                
+            }
+            
         }
         
     </style>
@@ -43,33 +81,53 @@
             <a href="#homePage" onclick="goHome()"><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
         </div>
         <nav class="nav">
-            <a href="index.html">رئيسية</a>
-            <a href="info.html">معلومات</a>
-            <a href="#contact">اتصل بنا</a>
+            <a class="navtext" href="index.html">رئيسية</a>
+            <a class="navtext" href="info.html">معلومات</a>
+            <a class="navtext" href="#contact">اتصل بنا</a>
             
         </nav>
     </header>
 
     <div class="container2">
-        <div class="item" style="background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1731444052/d5wvahypnghbzntge21e.jpg');">
-            <div class="section1 container1 " >
+        <div class="item" style="padding-top: 100PX; " >
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179510/management_enhanced_mdd2ik.png" alt="management_enhanced_mdd2ik">
+
+            </div>
+            <div class="container1 "  >
                 <h1>  ✦ ادارة أنمي غولد ✦</h1>
                 <p>إدارة أنمي غولد هي حيث يجتمع فيها أعضاء الإدارة و قادة الأقاليم لتكون ربط وصل بين مسؤولي الغولد و مسؤولي فرقهم , ويتم فيها إقامة اجتماعات لتسيير نظام أنمي غولد .</p>
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179475/liders_enhanced_d1ybp7.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ إجتماع القادة ✦</h1>
                 <p>إجتماع القادة هو المكان الدي يتواجد فيه قادة الفرق و المستشارين و مسؤولي الغولد , و تقام فيه الإجتماعات مثل إجتماع الإحصاء و القرارات الجديدة .</p>
             </div>
         </div>
-        <div class="item">
+        <div class="item" >
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179576/shoyokh_enhanced_sjywtd.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ مجلس الشيوخ ✦</h1>
                 <p>مجلس الشيوخ هو المكان الدي يجتمع فيه مؤسسي أنمي غولد و يتم فيه إتخاد القرارات المهمة , ويعتبر هو السلطة العليا لأنمي غولد .</p>
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179418/haras_byw0vc.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ الحرس الإمبراطوري ✦</h1>
                 <p>هو شات خاص يجتمع فيه أعضاء الحرس الإمبراطوري تحت قيادة قائد الحرس . <br>
@@ -78,24 +136,44 @@
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179460/lajna_enhanced_wniqjc.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ لجنة أنمي غولد ✦</h1>
                 <p>هي عبارة عن إدارة مصغرة تجمع بين نجون أنمي غولد و محاربي الظل و يتم فيها تسيير القطاعات و الأقسام .</p>
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179525/moaskar_enhanced_qs998u.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1">
                 <h1>  ✦ معسكر تدريب القادة ✦</h1>
                 <p>هو معسكر مختص في تقديم الدروس لمسؤولي الفرق (قائد\نائب\مستشار)</p>
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738179492/mahkama_enhanced_bkeh02.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ محكمة أنمي غولد ✦</h1>
                 <p>المكان اللدي يتم فيه حل الخلافات و المشاكل ,وتحديد عقوبات لمن يخالف قوانين أنمي غولد .</p>
             </div>
         </div>
         <div class="item">
+            <div class="logo1">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738181431/tawakim_pfl2y2.png" alt="management_enhanced_mdd2ik">
+
+            </div>
             <div class="container1 ">
                 <h1>  ✦ طواقم أنمي غولد ✦</h1>
                 <p>هي طواقم تسهر على إدارة مختلف المهام المهمة في أنمي غولد ,ويوجد حاليا أربع طواقم : <br><br>
