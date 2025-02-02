@@ -6,18 +6,271 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <title>أنمي غولد</title>
+    <style>
+        .P1{
+            text-align: center;
+            color: rgb(0, 0, 0); /* لون النص */
+        }
+        .TEXT1{
+            flex: 1;
+            width: 40%;  /* يجعل العرض 70% */
+            margin-left: auto;  /* يدفع العنصر بالكامل إلى اليمين */
+            justify-content: space-between;
+            
+            text-align: right;
+            display: flex;
+            flex-direction: column; /* يجعل الـ divs متلاصقة عموديًا */
+        }
+        /* المكون الذي نريد جعله في الوسط */
+        .AGDIF {
+            width: 65%;  /* العرض سيكون 65% من العرض الكامل */
+            margin: 0 auto;  /* محاذاة المكون في الوسط */
+            padding: 20px;
+            background-color: #f4f4f400;  /* يمكنك تغيير الخلفية حسب الحاجة */
+            text-align: center;  /* محاذاة النص داخل المكون */
+        }
+
+        /* لتوسيع المكون بشكل أفضل على الشاشات الصغيرة */
+        @media screen and (max-width: 768px) {
+            .AGDIF {
+                width: 90%;  /* يجعل العرض 90% على الشاشات الصغيرة */
+            }
+        }
+
+        .LOGO2{
+            width: 40%;
+            background-color: #007bff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            
+        }
+        @media (max-width: 768px) {
+            .AGDIF{
+                flex-direction: column;
+                text-align: center;
+                
+            }
+            
+            .LOGO2 {
+                margin-bottom: 15px;
+            }
+            
+            .TEXT1 {
+                text-align: center;
+                width: 90%;
+                padding-bottom: 50PX;
+            }
+
+            .TEXT1 h1{
+                font-size: 25PX;
+                
+            }
+            
+        }
+    .card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 50px 0;
+}
+
+/* الحاوية التي تحتوي على الكروت */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 50px auto;
+    max-width: 1200px; /* لتحديد الحد الأقصى للعرض */
+    flex-wrap: wrap;  /* لضمان أن العناصر تتحول إلى أسطر عند الحاجة */
+}
+
+/* تصميم كل كرت */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 25%;  /* تحديد عرض الكرت */
+    height: 600PX;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* تأثير عند التمرير فوق الكرت */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* تنسيق الصورة داخل الكرت */
+.image-container {
+    overflow: hidden;
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* تنسيق النص داخل الكرت */
+.description {
+    font-size: 16px;
+    color: #333;
+    margin: 15px 0;
+}
+
+/* تنسيق الزر */
+.button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* تأثير عند التمرير فوق الزر */
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Media query لعرض الشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 90%;  /* تعديل العرض ليكون أكبر في الشاشات الصغيرة */
+        margin-bottom: 20px; /* إضافة مسافة بين الكروت عند الترتيب العمودي */
+    }
+
+    .card-container {
+        flex-direction: column; /* تغيير ترتيب العناصر إلى عمودي */
+        align-items: center; /* محاذاة العناصر إلى الوسط */
+    }
+}
+
+
+/* المكون الذي يحتوي على المكونات الداخلية */
+.centered-component {
+    width: 65%;  /* العرض 65% من العرض الكلي */
+    margin: 0 auto;  /* محاذاة المكون في المنتصف */
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* الحاوية الداخلية التي تحتوي على المكونين */
+.inner-container {
+    display: flex;  /* استخدام flexbox لترتيب العناصر بجانب بعضها */
+    gap: 20px;  /* إضافة مسافة بين المكونين */
+    justify-content: center;  /* محاذاة العناصر في الوسط */
+}
+
+/* تصميم المكونين بداخل الحاوية */
+.box {
+    flex: 1;  /* يعطي للمكونين نفس المساحة */
+    background-color: #ffffff00;
+    /* padding: 20px; */
+    
+    text-align: center;
+}
+
+/* لتوسيع المكون بشكل أفضل على الشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+    .inner-container {
+        flex-direction: column;  /* تغيير ترتيب العناصر ليصبح عمودي */
+    }
+    .box {
+        width: 90%;  /* عرض المكونين يصبح 90% من الحاوية */
+        margin: 10px auto;  /* إضافة مسافة بين المكونين */
+    }
+}
+
+
+
+
+/* تنسيق الحاوية */
+.social-media-container {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    border-top: 2px solid #ddd;
+}
+
+/* تنسيق العنوان */
+.social-media-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* تنسيق الأيقونات */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    display: inline-block;
+    font-size: 30px;
+    color: #333;
+    transition: color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #007bff;  /* تغيير اللون عند المرور */
+    transform: scale(1.1);  /* تكبير الأيقونة */
+}
+
+/* تنسيق الأيقونات حسب النوع */
+.social-icon.facebook:hover {
+    color: #3b5998;
+}
+.social-icon.twitter:hover {
+    color: #1da1f2;
+}
+.social-icon.instagram:hover {
+    color: #e4405f;
+}
+.social-icon.linkedin:hover {
+    color: #0077b5;
+}
+.social-icon.youtube:hover {
+    color: #ff0000;
+}
+.social-icon.pinterest:hover {
+    color: #dd2100;
+}
+
+
+    </style>
 </head>
 <body>
     <!-- الهيدر -->
     <header>
         <div class="logo">
-            <a href="#homePage" onclick="goHome()"><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+            <a href="index.html" onclick="goHome()"><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
         </div>
         <nav class="nav">
             <a href="index.html">رئيسية</a>
             <a href="info.html">معلومات</a>
-            <a href="#contact">اتصل بنا</a>
+            <a href="contactus.html">اتصل بنا</a>
             
         </nav>
     </header>
@@ -32,9 +285,129 @@
         <a href="anime_gold.html" class="btn01" style="text-align: center; float: right; width: 50%;" onclick="navigateTo('animeGoldPage')">اضغط للبدأ</a>        </div>
         
     </div>
+
+
+    <div class="AGDIF">
+        <div style="width: 100%; text-align: center;">
+            <h1 >تعريف أنمي غولد </h1>
+        </div>
+        
+            <div class="box">
+
+                <img style="width: 200PX;" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="management_enhanced_mdd2ik">
+
+            </div>
+            <div class="box">
+                <h1></h1>
+                <p class="P1"> أنمي غولد هي منظومة متكاملة قائمة بذاتها حيت تحتوي علي العديد من الفرق و القطاعات المختلفة والمتنوعة يستطيع العضو ممارسة اي نشاط داخلها بشرط التقيد بقواعدها .
+
+                    و في هذا الموقع ستجد دليلك الشامل لكل اقسام أنمي غولد و في حال كان هناك أي اقتراح أو لاحظت أي خطأ فتواصل مع فريق الصيانة اللدي ستجده في صفحة اتصل بنا اللتي تضهر في القائمة أعلى الموقع . . </p>
+            </div>
+        
+    </div>
+
+    <div class="LIDERS">
+    <div style="width: 100%; text-align: center;">
+        <h1 >ثالوث مسؤولي أنمي غولد</h1>
+    </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="image-container">
+                    <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738501125/475365755_1901359610392759_7095699354764653177_n_xmlqlu.jpg" alt="Image" class="image">
+                </div>
+                <p class="description">الإمبراطور وهوا احد اضلاع مثلث السلطة الاعلى في غولد وسقف الرتب وقائد مجلس الشيوخ وادارة الغولد و بالطبع كل القرارات يكون له يد او عين فيها. .</p>
+                <button class="SITBTN" style="border: 0PX solid #333; background-color: #333;" ><a href="https://www.facebook.com/share/18GKgfJpQL/" target="_blank" style="text-decoration: none; color: #ffffff;" >رابط الحساب</a></button>
+            </div>
+            <div class="card">
+                <div class="image-container">
+                    <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738501177/476295945_1118758246661778_4753614925800047618_n_k7kwqb.jpg" alt="Image" class="image">
+                </div>
+                <p class="description">  احد اضلاع مثلث السلطة الاعلى في غولد وهو حامي حمى الغولد والمسؤول عن امانها وثباتها ورتبة بهذا الحجم يجب أن يكون صاحبها بارع في البرمجة واللغة الالكترونية فهوا قائد المحكمة وكل مايتبعها والمسؤول الاول عن القبة الحديدية عمل المؤسس يتمركز على المجموعة في حد ذاتها.</p>
+                <button class="SITBTN" style="border: 0PX solid #333; background-color: #333;" ><a href="https://www.facebook.com/share/14xES8ajNM/" target="_blank" style="text-decoration: none; color: #ffffff;" >رابط الحساب</a></button>
+            </div>
+            <div class="card">
+                <div class="image-container">
+                    <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738501183/475926584_662978642722613_7083226652685956474_n_nbwbjr.jpg" alt="Image" class="image">
+                </div>
+                <p class="description"> احد اضلاع مثلث السلطة الاعلى في غولد رتبة تمنح لشخص واحد وهو حاكم القياصرة ومسير المجموعة وفرقها صلاحيات نخبة قيصر غير محدودة فهوا يستطيع البناء وطرح اي فكرة وتغير اي شي في غولد وانزال اي رتبة مادونه. </p>
+                <button class="SITBTN" style="border: 0PX solid #333; background-color: #333;" ><a href="https://www.facebook.com/share/18MC5zbfHm/" target="_blank" style="text-decoration: none; color: #ffffff;" >رابط الحساب</a></button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="AGDIF">
+
+        
+
+            <div class="box">
+                <h1>خريطة أنمي غولد</h1>
+                <p>
+                    خريطة صممها المصمم يوسف و صاحب الفكرة هو مصطفى , تحتوي على كل مكان في أنمي غولد . ويمكنك تفقد كل اقليم بالضغط عليه في الخريطة .
+                </p>
+
+            </div>
+
+            <div class="box">
+
+                        <!-- Image Map Generated by http://www.image-map.net/ -->
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1738504052/471764288_1554350155236903_3883896787243912888_n_efnupw.jpg" usemap="#image-map" style="border: 1PX solid #333; border-radius: 10PX;">
+
+                <map name="image-map">
+                    <area target="" alt="" title="إقليم الفايكينغ" href="vaiking.html" coords="281,51,344,50,348,66,368,72,375,69,382,71,386,81,383,93,380,99,380,106,372,96,371,103,366,111,360,115,351,113,341,116,333,123,329,135,317,135,309,141,302,147,298,156,289,161,270,163,262,170,257,175,241,179,232,177,215,180,208,172,202,152,193,158,192,138,201,121,213,125,211,113,220,104,218,91,208,85,218,80,232,95,246,88,242,75,252,86,268,82,268,72,273,68,268,61" shape="poly">
+                    <area target="" alt="" title="إقليم العمالقة" href="giants.html" coords="375,161,363,153,353,133,357,126,350,123,346,117,337,123,336,129,334,137,317,141,310,147,305,156,290,167,274,167,268,171,263,177,255,180,241,186,236,182,229,183,217,191,223,196,205,192,197,200,195,211,214,216,228,210,238,211,248,222,254,223,258,228,264,221,275,216,284,216,290,212,296,205,301,197,300,187,306,184,309,170,315,186,327,182,331,186,343,175,348,158" shape="poly">
+                    <area target="" alt="" title="إقليم المماليك" href="mamluks.html" coords="291,214,302,220,300,231,303,239,331,285,351,288,346,291,344,300,333,309,328,320,317,331,297,322,303,312,318,308,322,294,316,286,307,287,303,294,302,303,303,312,298,321,297,322,303,312,292,322,284,318,275,308,268,304,265,296,269,289,269,274,263,264,268,257,274,253,272,245,262,245,254,248,249,241,261,233,258,226,273,216" shape="poly">
+                    <area target="" alt="" title="إقليم المافيا" href="mafia.html" coords="263,265,267,270,269,286,265,298,268,304,277,308,285,318,276,329,272,338,263,343,243,344,229,353,212,353,211,346,217,341,215,334,220,323,214,320,204,325,207,312,219,307,227,302,228,285,232,276,228,272,249,270" shape="poly">
+                    <area target="" alt="" title="إقليم نوفا" href="nova.html" coords="301,219,315,217,326,209,353,203,346,207,375,201,358,211,372,208,360,218,379,209,370,217,388,207,371,223,359,224,354,232,366,226,389,219,390,224,380,233,390,231,391,236,383,246,376,246,369,255,396,250,400,255,386,265,370,263,375,273,362,285,348,286,331,284,317,258,301,236" shape="poly">
+                    <area target="" alt="" title="جزر إقليم القراصنة" href="pirats.html" coords="205,249,210,254,220,250,220,243,227,242,231,246,237,250,239,258,233,262,223,262,221,267,213,268,207,264,202,257" shape="poly">
+                    <area target="" alt="" title="إقليم الأباطرة" href="empirors.html" coords="286,320,306,322,333,342,331,373,321,387,304,390,284,395,276,404,277,410,265,412,249,425,243,441,248,457,237,464,228,464,217,448,222,436,211,441,204,421,210,412,218,410,224,397,234,398,227,391,236,389,220,389,212,384,219,380,212,367,212,354,229,353,240,345,267,343,274,336,278,327" shape="poly">
+                    <area target="" alt="" title="إقليم النينجا" href="ninja.html" coords="350,289,361,292,371,286,377,283,390,274,383,287,381,292,364,300,350,314,356,312,349,326,342,331,333,333,337,338,357,331,360,336,374,326,374,315,379,319,380,325,375,338,370,343,349,345,332,342,317,332,325,323,329,314,336,306,344,298" shape="poly">
+                    <area target="" alt="" title="إقليم النينجا" href="ninja.html" coords="417,317,421,308,417,293,407,291,400,290,385,302,380,311,391,309,391,315,402,311,408,313,395,322,407,316" shape="poly">
+                    <area target="" alt="" title="إقليم بليتش" href="bleach.html" coords="335,343,343,342,350,346,384,344,386,349,381,351,391,359,395,365,392,375,386,374,383,366,382,358,373,360,371,376,360,379,361,384,368,386,376,385,384,389,392,386,397,390,395,399,388,409,380,413,377,417,369,415,365,409,347,409,341,406,336,409,322,409,320,403,303,402,288,410,278,410,278,401,286,394,320,387,328,378,332,369,332,351" shape="poly">
+                    <area target="" alt="" title="إقليم الفراعنة" href="faraina.html" coords="323,410,319,404,302,405,289,411,278,411,262,415,249,426,247,434,243,442,248,458,259,453,255,467,260,474,268,476,282,476,289,471,298,475,308,473,315,471,324,471,331,464,341,469,350,467,359,468,370,468,379,462,388,456,389,449,396,444,399,437,391,437,391,430,397,425,394,419,392,426,387,436,383,431,374,440,360,439,345,435,333,433,311,432,313,426,321,416" shape="poly">
+
+
+
+
+
+
+
+
+                </map>
+            </div>
+
+            
+
+
+        
+
+
+    </div>
+
+
+
+
     <div class="footer">
         © 2025 جميع الحقوق محفوظة | تصميم وبرمجة: أكازا ساما | فكرة : حمزة
     </div>
+    <div class="social-media-container">
+        <h2>تابعنا على مواقع التواصل الاجتماعي</h2>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/g/1EMWhZUjf1/" target="_blank" class="social-icon facebook" title="فيسبوك">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.pinterest.com/askrtyr/_created" target="_blank" class="social-icon pinterest" title="بينتيريست">
+                <i class="fab fa-pinterest"></i>
+            </a>
+            
+            
+            <a href="https://www.youtube.com/@YoussefbtkGL/videos" target="_blank" class="social-icon youtube" title="يوتيوب">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 
 </body>

@@ -35,7 +35,7 @@ header {
     height: 100%; /* تعيين الارتفاع ليشغل كامل الشاشة */
     margin: 0px;
     padding: 0px;
-    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1731444052/d5wvahypnghbzntge21e.jpg'); /* صورة الخلفية */
+    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1738515243/475168408_596102249848849_388858270720861095_n_wpqubk.jpg'); /* صورة الخلفية */
     background-position: bottom; /* تحديد موقع الصورة في أسفل الصفحة */
     background-attachment: fixed; /* تثبيت الخلفية لتبقى ثابتة عند التمرير */
     background-size: cover;
@@ -264,3 +264,35 @@ display: none;
     padding: 10px 0;
     font-size: 10px;
 }
+
+.SITBTN {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+   }
+   
+   .SITBTN > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+   }
+   
+   .SITBTN:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+   }
+   
+   .SITBTN:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+   }
