@@ -6,29 +6,329 @@
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
     <link rel="stylesheet" href="style.css">
     <title>أنمي غولد</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            padding-top: 50PX;
+            margin-top: 50PX;
+
+
+
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 50PX auto;
+        }
+        .section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        h2 {
+            font-size: 30px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .region-logo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .region-logo img:hover {
+            transform: scale(1.1);
+        }
+        .region-btn {
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .region-btn:hover {
+            background-color: #d4ad00;
+        }
+        .leaders,  .rankings {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .leaders div, .rankings div {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .leaders div:hover,  .rankings div:hover {
+            transform: translateY(-10px);
+        }
+        /* تحسين التنسيق للبطاقات */
+.teams {
+    display: flex;
+    flex-wrap: wrap; /* تسمح للعناصر بالانتقال إلى السطر التالي */
+    justify-content: space-around; /* توزيع العناصر بشكل متساوي */
+    gap: 20px; /* المسافة بين العناصر */
+}
+
+.team-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 200px; /* تحديد عرض ثابت للبطاقة */
+    min-height: 250px; /* تحديد الحد الأدنى للطول لضمان ظهور النص */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* لضمان تمركز المحتوى داخل البطاقة */
+    align-items: center; /* لضمان تمركز الشعار والنص */
+    transition: transform 0.3s ease;
+    word-wrap: break-word; /* يسمح بتوزيع النص داخل البطاقة بحيث لا يتجاوز الحدود */
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+}
+
+.team-logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    word-wrap: break-word; /* ضمان ان النص لا يتجاوز حدود البطاقة */
+}
+
+    </style>
 </head>
 <body >
     <!-- الهيدر -->
     <header>
         <div class="logo">
-            <a href="index.html" onclick="goHome()"><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+            <a href="index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
         </div>
         <nav class="nav">
-            <a href="index.html">رئيسية</a>
+            <a href="anime_gold.html">رئيسية</a>
             <a href="info.html">معلومات</a>
-            <a href="contactus.html">اتصل بنا</a>
+            <a href="https://hetller97.github.io/contactus1234/">اتصل بنا</a>
             
         </nav>
     </header>
 
 
+    <div class="container">
+        <!-- أولًا: شعار الإقليم واسم الإقليم وزر الانتقال -->
+        <div class="section region-logo">
+            <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1731439052/t5swctjxzkzwsbrd0gb1.png" alt="شعار الإقليم">
+            <h2 style="color: #333;">إقليم الأباطرة</h2>
+            <a href="region-page.html" class="region-btn">انتقل إلى صفحة الإقليم</a>
+        </div>
 
-    <div class="farainapage" id="sectorsPage" style=" padding: 100px;">
-        <img class="regimg" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1731439051/jbmnr85mysmti47dnxfp.png" alt="شعار قطاع التصميم"><br>
-            <p>الأباطرة</p>
-            <hr style="background-color: black;">
-        <p>هنا سيتم عرض معلومات عن الأباطرة.</p>
+        <!-- ثانيًا: تعريف عن الإقليم -->
+        <div class="section">
+            <h2>تعريف عن الإقليم</h2>
+            <p>هو الاقليم التاني من بين الاقاليم التسع الاساسية
+                ويعتبر اقــــــليم بليتش تجسيد لانمي بّـــــــليتش 
+                حيـــــــّت ان كل مايخص الاقلَيـــــــّم مِــــــــتعلق بالانمي من رثًــــــــب ومسميات فرق اخدت كَلَـــــــها من انمي بليتش 
+                </p>
+        </div>
 
+        <!-- ثالثًا: أسماء قادة الإقليم -->
+        <div class="section">
+            <h2>قادة الإقليم</h2>
+            <div class="leaders">
+                <div>
+                    <h3>القائد الأعلى</h3>
+                    <p>الاسم.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                <div>
+                    <h3>نائب أول</h3>
+                    <p>الاسم.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- رابعًا: فرق الإقليم -->
+<div class="section">
+    <h2>فرق الإقليم</h2>
+    <div class="teams">
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117718/20230628_121248-Photoroom_1_nlisfo.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name"> الإسبادا</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117737/20230628_121248-Photoroom_2_bbjje8.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الشينيغامي</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117765/20230628_121248-Photoroom_3_eeeoih.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الكوينشي</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117810/20230628_121248-Photoroom_4_feqgfu.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الأرانكار</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117829/20230628_121248-Photoroom_6_pqnoly.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الكينباتشي</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117848/20230628_121248-Photoroom_8_xzfgti.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الظلام</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117885/20230628_121248-Photoroom_9_wi8wm3.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الجماجم السوداء</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117912/20230628_121248-Photoroom_euemkx.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الهيكوموندو</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117924/1688031078167_y7jv6s.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">صائدو الارواح </div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739117997/1688236086665_xbfuyz.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الهولو</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739118019/1689338057665_f4uakq.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الأشباح</div>
+        </div>
+        <div class="team-card">
+            <div class="team-logo">
+                <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1739118062/1700345087837_kkxhrr.png" alt="شعار الفريق">
+            </div>
+            <div class="team-name">الحماية</div>
+        </div>
+    </div>
+</div>
+
+
+
+        <!-- خامسًا: ترتيب الإقليم -->
+        <div style="text-align: center; text-shadow:#333;">
+            <h2>رتب الإقليم</h2>
+        </div>
+        <div class="leaders">
+            
+            <div class="leaders">
+                <span>≛ الــــجــنــود ≛<br>
+
+                    ✩「جندي」✩╽ 0 ╽<br>
+                    
+                    ✬「 صائد」✬ ╽25╽<br>
+                    
+                    ✧「 صائد الأرواح 」✧ ╽50╽<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                    
+                    ♜﴾   نـخـبـة المـهـمـات   ﴿♜<br>
+                    
+                    ♖「  منفد مبتدأ 」♖  ╽100╽<br>
+                    
+                    ♖「 منفد متمرس 」♖  ╽150╽<br>
+                    
+                    ♛「  منفد محترف 」♛  ╽200╽<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                    
+                    ♧﴾   نـخـبـة الـظـلام   ﴿♧<br>
+                    
+                    ♛「 مارشل 」♛  ╽300╽<br>
+                    
+                    ♛「 محارب اللعنات 」♛  ╽400╽<br>
+                    
+                    ♛「 صائد اللعنات 」♛  ╽500╽<br>
+                    
+                    ♛「 حارس اللعنات 」♛  ╽650╽<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                    
+                    ¤﴾   نخـبـة الانـوبـي   ﴿¤<br>
+                    
+                    ♛「 جنرال درجة خاصة」♛  ╽800╽<br>
+                    
+                    ♛「 لورد درجة خاصة」♛  ╽1000╽<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                    
+                    ♛﴾   قـادة الــفـرقـة   ﴿♛<br>
+                    
+                    ❘ 「 مـساعـد الفريق 」❘ <br>
+                    
+                    ❘ 「 مـستشـار الفريق 」❘<br>
+                    
+                    ❘ 「 نـائـب الفريق 」❘<br>
+                    
+                    ╠ 『 قـائـد الفريـق 』╣<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                    
+                    ‖   ⫷ نـجـم بـلـيـتـش ⫸ ‖<br>
+                    
+                    ❘ 『 إداري الإقـليـم 』❘<br>
+                    
+                    ┊ [ مـسـاعـد اقـلـيـم بـلـيـتـش ] ┊<br>
+                    
+                    ┊ [ مستـشـار اقـلـيـم بـلـيـتـش ] ┊<br>
+                    
+                    ┊ [ نـائـب اقـلـيـم بـلـيـتـش ] ┊<br>
+                    
+                    I|〖 قـائـد إقـلـيـم بـلـيـتـش  〗 |I<br>
+                    
+                    〄─╾━━━∘🜲∘━━━╼─〄<br>
+                </span>
+            </div>
+        </div>
     </div>
     
     <!-- رابط للعودة إلى الصفحة الرئيسية -->
