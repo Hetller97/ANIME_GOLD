@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="style.css">
+    <title>أنمي غولد</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1d1d1d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(43, 43, 43, 0.918);
+            width: 90%;
+            max-width: 400px;
+        }
+        .container h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #e7e7e7;
+            color: #1d1d1d;
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #f1c40f;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #d4ac0d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 400px;
+        }
+
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+        </div>
+        <nav class="nav">
+            <a href="anime_gold.html">رئيسية</a>
+            <a href="info.html">معلومات</a>
+            <a href="contactus.html">اتصل بنا</a>
+            
+        </nav>
+    </header>
+    <div class="container">
+        <h2>تواصل مع الصيانة </h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="facebook-name">اسم حساب فايسبوك:</label>
+                <input type="text" id="facebook-name" name="facebook-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="profile-link">رابط الحساب:</label>
+                <input type="url" id="profile-link" name="profile-link" required>
+            </div>
+            <div class="form-group">
+                <label for="rank">الرتبة:</label>
+                <input type="text" id="rank" name="rank" required>
+            </div>
+            <div class="form-group">
+                <label for="request">شرح الطلب:</label>
+                <textarea id="request" name="request" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">إرسال الطلب</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { getDatabase, ref, set, push } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js'; // إضافة push هنا
+
+// 🔹 إعداد Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyAOyfq_wNqui45xvPHuJuWr78i2VvXmsUI",
+    authDomain: "contact1234-565f7.firebaseapp.com",
+    databaseURL: "https://contact1234-565f7-default-rtdb.firebaseio.com",
+    projectId: "contact1234-565f7",
+    storageBucket: "contact1234-565f7.firebasestorage.app",
+    messagingSenderId: "802421447122",
+    appId: "1:802421447122:web:c877ebf6fbb13cceac900b",
+    measurementId: "G-B71YJ82WYS"
+};
+
+// 🔹 تهيئة Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// 🔹 التعامل مع النموذج عند الإرسال
+document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // جلب القيم من المدخلات
+    const facebookName = document.getElementById("facebook-name").value;
+    const email = document.getElementById("email").value;
+    const profileLink = document.getElementById("profile-link").value;
+    const rank = document.getElementById("rank").value;
+    const request = document.getElementById("request").value;
+
+    // إرسال البيانات إلى Firebase باستخدام push() لإنشاء معرف فريد
+    const requestsRef = ref(database, 'requests');
+    const newRequestRef = push(requestsRef); // إنشاء معرف فريد
+    set(newRequestRef, {
+        facebookName: facebookName,
+        email: email,
+        profileLink: profileLink,
+        rank: rank,
+        request: request,
+        timestamp: new Date().toISOString() // يمكنك الاحتفاظ بالتوقيت هنا
+    }).then(() => {
+        alert("✅ تم إرسال الطلب بنجاح!");
+        document.querySelector("form").reset(); // إعادة تعيين النموذج
+    }).catch((error) => {
+        alert("❌ حدث خطأ: " + error.message);
+    });
+});
+
+
+    </script>
+    <div class="footer">
+        © 2025 جميع الحقوق محفوظة | تصميم وبرمجة: أكازا ساما | فكرة : حمزة
+    </div>
+</body>
+</html>

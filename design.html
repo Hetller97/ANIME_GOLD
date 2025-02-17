@@ -6,6 +6,123 @@
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
     <link rel="stylesheet" href="style.css">
     <title>أنمي غولد</title>
+
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            padding-top: 50PX;
+            margin-top: 50PX;
+
+
+
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 50PX auto;
+        }
+        .section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        h2 {
+            font-size: 30px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .region-logo img {
+            width: 150px;
+            border-radius: 10%;
+            transition: transform 0.3s ease;
+        }
+        .region-logo img:hover {
+            transform: scale(1.1);
+        }
+        .region-btn {
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .region-btn:hover {
+            background-color: #d4ad00;
+        }
+        .leaders,  .rankings {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .leaders div, .rankings div {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .leaders div:hover,  .rankings div:hover {
+            transform: translateY(-10px);
+        }
+        /* تحسين التنسيق للبطاقات */
+.teams {
+    display: flex;
+    flex-wrap: wrap; /* تسمح للعناصر بالانتقال إلى السطر التالي */
+    justify-content: space-around; /* توزيع العناصر بشكل متساوي */
+    gap: 20px; /* المسافة بين العناصر */
+}
+
+.team-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 200px; /* تحديد عرض ثابت للبطاقة */
+    min-height: 250px; /* تحديد الحد الأدنى للطول لضمان ظهور النص */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* لضمان تمركز المحتوى داخل البطاقة */
+    align-items: center; /* لضمان تمركز الشعار والنص */
+    transition: transform 0.3s ease;
+    word-wrap: break-word; /* يسمح بتوزيع النص داخل البطاقة بحيث لا يتجاوز الحدود */
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+}
+
+.team-logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    word-wrap: break-word; /* ضمان ان النص لا يتجاوز حدود البطاقة */
+}
+
+</style>
 </head>
 <body >
     <!-- الهيدر -->
@@ -16,25 +133,80 @@
         <nav class="nav">
             <a href="anime_gold.html">رئيسية</a>
             <a href="info.html">معلومات</a>
-            <a href="https://hetller97.github.io/contactus1234/">اتصل بنا</a>
+            <a href="contactus.html">اتصل بنا</a>
             
         </nav>
     </header>
 
+    <div class="container">
+        <!-- أولًا: شعار الإقليم واسم الإقليم وزر الانتقال -->
+        <div class="section region-logo">
+            <img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737831156/desing_jceqcw.png" alt="شعار الإقليم">
+            <h2 style="color: #333;">قطاع التصميم</h2>
+            <a href="region-page.html" class="region-btn">انتقل إلى صفحةالقطاع</a>
+        </div>
 
-    <div class="farainapage" id="sectorsPage" style=" padding: 100px;">
-        <img class="regimg" src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737831156/desing_jceqcw.png" alt="شعار قطاع التصميم"><br>
-            <p>التصميم</p>
-            <hr style="background-color: black;">
-        <p>هنا سيتم عرض معلومات عن التصميم.</p>
+        <!-- ثانيًا: تعريف عن الإقليم -->
+        <div class="section">
+            <h2>تعريف عن القطاع</h2>
+            <p>
+                يهدف قطاع التصميم إلى إنشاء حلول بصرية مبتكرة تلبي احتياجات المصممين  وتعزز من تجربتهم يستند التصميم إلى فهم عميق للإبداع والجمالية 
+            </p>
+        </div>
 
+        <!-- ثالثًا: أسماء قادة الإقليم -->
+        <div class="section">
+            <h2>مسؤولي القطاع</h2>
+            <div class="leaders">
+                <div>
+                    <h3>المسؤولة</h3>
+                    <p>مشكلجية.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                <div>
+                    <h3>النائب1</h3>
+                    <p>ماركو.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                <div>
+                    <h3>النائب2</h3>
+                    <p>الحارث.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                <div>
+                    <h3>النائب3</h3>
+                    <p>مارشال.</p>
+                    <a href="#" class="region-btn">رابط الحساب</a>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- رابعًا: فرق الإقليم -->
+<div class="section">
+    <h2>أقسام القطاع</h2>
+    <div class="teams">
+        <div class="team-card">
+            <div class="team-name"> أكادمية كونكر </div>
+        </div>
+        <div class="team-card">
+            <div class="team-name"> الأكادمية الأساسية </div>
+        </div>
+        <div class="team-card">
+            <div class="team-name"> أكادمية بادس </div>
+        </div>
+        
     </div>
-    
+</div>
     <!-- رابط للعودة إلى الصفحة الرئيسية -->
-    <a href="kitaat.html">العودة إلى الصفحة الرئيسية</a>
+    <div style="text-align: center;">
+        <a href="kitaat.html" class="region-btn">العودة إلى الصفحة الرئيسية</a> <br><br><br><br>
+    </div>    
+</div>
+
+
+    <div class="footer">
+        © 2025 جميع الحقوق محفوظة | تصميم وبرمجة: أكازا ساما | فكرة : حمزة
     </div>
-
-
-
 </body>
 </html>

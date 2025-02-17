@@ -14,3 +14,7 @@ document.getElementById("regionsPage").addEventListener("click", function() {
     window.location.href = "faraina.html";
 });
 
+document.getElementById("goTOlinks").addEventListener("click", function() {
+    window.location.href = "links.html";
+});
+
