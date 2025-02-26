@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="style.css">
+    <title>أنمي غولد</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <style>
+        /* تنسيق الصفحة */
+        body {
+
+            margin: 0;
+            padding: 100PX;
+        }
+
+        
+        /* تصميم النموذج */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .form-box {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin: 10px;
+        }
+
+        .form-box h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFD700;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #FFB700;
+        }
+
+        /* تعديل التنسيق في حالة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .form-box {
+                width: 100%;
+                max-width: none;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+        </div>
+        <nav class="nav">
+            <a href="login.html">تسجيل</a>
+            <a href="anime_gold.html">رئيسية</a>
+            <a href="info.html">معلومات</a>
+            <a href="contactus.html">اتصل بنا</a>
+            
+        </nav>
+    </header>
+
+    <div class="fixed-message">
+    
+        هده الميزة اضفناها ليسهل على الاداريين التعرف على معلومات كل شخص لهدا لم نركز في تصميم صفحة البروفايل , ادا اردت تفقد معلوماتك فقط قم بتسجيل الدخول مرة اخرى . !
+    </div>
+
+    <div class="container">
+        <div class="form-box" id="register">
+            <h2>تسجيل حساب جديد</h2>
+            <input type="text" id="name" placeholder="الاسم"><br>
+            <input type="email" id="email" placeholder="الإيميل"><br>
+            <input type="password" id="password" placeholder="كلمة السر"><br>
+            <input type="text" id="card" placeholder="كود البطاقة البنكية (وهمي)"><br>
+            <input type="text" id="profileLink" placeholder="رابط الحساب"><br>
+            <input type="text" id="rank" placeholder="رتبتك"><br>
+            <button onclick="register()">تسجيل</button>
+        </div>
+
+        <div class="form-box" id="login">
+            <h2>تسجيل الدخول</h2>
+            <input type="email" id="loginEmail" placeholder="الإيميل"><br>
+            <input type="password" id="loginPassword" placeholder="كلمة السر"><br>
+            <button onclick="login()">دخول</button>
+            <button onclick="resetPassword()">نسيت كلمة المرور؟</button>
+        </div>
+    </div>
+
+    <div id="profile" style="display:none;">
+        <h2>حسابك</h2>
+        <p id="userInfo"></p>
+        <button onclick="logout()">تسجيل الخروج</button>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOyfq_wNqui45xvPHuJuWr78i2VvXmsUI",
+            authDomain: "contact1234-565f7.firebaseapp.com",
+            databaseURL: "https://contact1234-565f7-default-rtdb.firebaseio.com",
+            projectId: "contact1234-565f7",
+            storageBucket: "contact1234-565f7.firebasestorage.app",
+            messagingSenderId: "802421447122",
+            appId: "1:802421447122:web:c877ebf6fbb13cceac900b",
+            measurementId: "G-B71YJ82WYS"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth(app);
+        const db = firebase.database(app);
+
+        function register() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const card = document.getElementById("card").value;
+            const profileLink = document.getElementById("profileLink").value;
+            const rank = document.getElementById("rank").value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    return db.ref("users/" + user.uid).set({
+                        name, email, card, profileLink, rank
+                    });
+                })
+                .then(() => {
+                    alert("تم التسجيل بنجاح! قم بتسجيل الدخول الآن");
+                })
+                .catch(error => alert(error.message));
+        }
+
+        function login() {
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    return db.ref("users/" + user.uid).get();
+                })
+                .then(snapshot => {
+                    if (snapshot.exists()) {
+                        // حفظ بيانات المستخدم في LocalStorage لاستخدامها لاحقًا
+                        localStorage.setItem("userData", JSON.stringify(snapshot.val()));
+                        // الانتقال إلى صفحة الحساب
+                        window.location.href = "profile.html";
+                    }
+                })
+                .catch(error => alert("كلمة السر أو البريد الالكتروني غير صحيح !"));
+        }
+
+        function logout() {
+            auth.signOut().then(() => {
+                document.getElementById("profile").style.display = "none";
+                document.getElementById("login").style.display = "block";
+                document.getElementById("register").style.display = "block";
+            });
+        }
+
+        function resetPassword() {
+            const email = document.getElementById("loginEmail").value;
+            if (!email) {
+                alert("يرجى إدخال بريدك الإلكتروني أولاً لإعادة تعيين كلمة المرور.");
+                return;
+            }
+
+            auth.sendPasswordResetEmail(email)
+                .then(() => alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني."))
+                .catch(error => alert(error.message));
+        }
+    </script>
+</body>
+</html>
