@@ -35,7 +35,7 @@ header {
     height: 100%; /* تعيين الارتفاع ليشغل كامل الشاشة */
     margin: 0px;
     padding: 0px;
-    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1743453016/487994502_638874248904982_4321854966252016653_n_n1nvmj.jpg'); /* صورة الخلفية */
+    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1745607898/492588082_658659736926433_5423533378359982909_n_q5eev6.jpg'); /* صورة الخلفية */
     background-position: bottom; /* تحديد موقع الصورة في أسفل الصفحة */
     background-attachment: fixed; /* تثبيت الخلفية لتبقى ثابتة عند التمرير */
     background-size: cover;
@@ -53,6 +53,19 @@ header {
     margin-bottom: 20px;
 }
 
+
+.float-banner{
+    padding-top: 100PX;
+}
+
+.event-image{
+    width: 400Px;
+}
+
+  
+  
+  
+  
 .start-button {
     background-color: yellow;
     color: black;
@@ -180,7 +193,7 @@ header {
     height: 100%; /* تعيين الارتفاع ليشغل كامل الشاشة */
     margin: 0px;
     padding: 0px;
-    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1743453016/487994502_638874248904982_4321854966252016653_n_n1nvmj.jpg'); /* صورة الخلفية */
+    background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1745607898/492588082_658659736926433_5423533378359982909_n_q5eev6.jpg'); /* صورة الخلفية */
     background-position: bottom; /* تحديد موقع الصورة في أسفل الصفحة */
     background-attachment: fixed; /* تثبيت الخلفية لتبقى ثابتة عند التمرير */
     background-size: cover;
