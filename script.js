@@ -1,20 +1,41 @@
-document.getElementById("goTOregions").addEventListener("click", function() {
-    window.location.href = "regions.html";
-});
+const btnRegions = document.getElementById("goTOregions");
+if (btnRegions) {
+    btnRegions.addEventListener("click", function () {
+        window.location.href = "regions.html";
+    });
+}
 
-document.getElementById("goTOkitaat").addEventListener("click", function() {
-    window.location.href = "kitaat.html";
-}); 
+const btnKitaat = document.getElementById("goTOkitaat");
+if (btnKitaat) {
+    btnKitaat.addEventListener("click", function () {
+        window.location.href = "kitaat.html";
+    });
+}
 
-document.getElementById("goTOmanagement").addEventListener("click", function() {
-    window.location.href = "management.html";
-}); 
+const btnManagement = document.getElementById("goTOmanagement");
+if (btnManagement) {
+    btnManagement.addEventListener("click", function () {
+        window.location.href = "management.html";
+    });
+}
 
-document.getElementById("regionsPage").addEventListener("click", function() {
-    window.location.href = "faraina.html";
-});
+const btnRegionsPage = document.getElementById("regionsPage");
+if (btnRegionsPage) {
+    btnRegionsPage.addEventListener("click", function () {
+        window.location.href = "faraina.html";
+    });
+}
 
-document.getElementById("goTOlinks").addEventListener("click", function() {
-    window.location.href = "links.html";
-});
+const btnLinks = document.getElementById("goTOlinks");
+if (btnLinks) {
+    btnLinks.addEventListener("click", function () {
+        window.location.href = "links.html";
+    });
+}
 
+const btnTools = document.getElementById("goTOManagementTools");
+if (btnTools) {
+    btnTools.addEventListener("click", function () {
+        window.location.href = "managementTools.html";
+    });
+}

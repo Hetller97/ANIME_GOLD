@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>أنمي غولد</title>
+  <meta charset="UTF-8">
+  <title>سلة المحذوفات</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+body {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700; /* Bold */
+  /* overflow: hidden; إزالة التمرير من الصفحة */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  justify-content: center; /* مركزية أفقيًا */
+  align-items: center;
+  background-image: url('https://res.cloudinary.com/doe1glpxm/image/upload/v1737304776/%D9%87%D9%88%D9%8A%D8%A9_vnlmdv.png');        
+  background-position: bottom; /* تحديد موضع الصورة في أسفل الصفحة */
+  background-repeat: no-repeat; /* منع تكرار الصورة */
+  background-attachment: fixed; /* جعل الصورة ثابتة ولا تتحرك أثناء التمرير */
+  background-size: cover; /* جعل الصورة تغطي كامل مساحة العنصر */
+  position: relative;
+
+}
+    /* صفحة سلة المحذوفات */
+.trash-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.trash-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #FFD700;
+}
+
+.trash-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.trash-container thead {
+  background-color: #FFD700;
+  color: rgb(35, 35, 35);
+}
+
+.trash-container th,
+.trash-container td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.trash-container tbody tr:hover {
+  background-color: #2a2a2a;
+}
+
+.trash-container button {
+  background-color: #FFD700;
+  border: none;
+  padding: 8px 16px;
+  color: rgb(33, 33, 33);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.trash-container button:hover {
+  background-color: #bb9f00;
+}
+
+  </style>
+</head>
+<body dir="rtl" style="margin-top: 80PX;">
+      <!-- الهيدر -->
+      <header>
+        <div class="logo">
+            <a href="../index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+        </div>
+        <nav class="nav">
+            <a href="../anime_gold.html">رئيسية</a>
+            <a href="../info.html">معلومات</a>
+            <a href="../contactus.html">اتصل بنا</a>
+            
+        </nav>
+    </header>
+
+  <div class="trash-container">
+    <button onclick="window.location.href = 'dashboard.html'" >العودة إلى الصفحة الرئيسية</button>
+    <h1>العُمال المحذوفين</h1>
+    <table id="trashTable">
+      <thead>
+        <tr>
+          <th>...</th>
+          <th>...</th>
+          <th>...</th>
+          <th>...</th>
+          <th>...</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // إعداد Firebase (ضع بيانات مشروعك هنا)
+  
+
+    window.onload = fetchTrashedWorkers;
+
+    async function fetchTrashedWorkers() {
+      const tableBody = document.querySelector("#trashTable tbody");
+      tableBody.innerHTML = "";
+
+      const snapshot = await db.collection("trash").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${data.name}</td>
+          <td>${data.bankCode}</td>
+          <td>${data.rank}</td>
+          <td>${data.code}</td>
+          <td>${data.notes}</td>
+          <td>
+            <button onclick="restoreWorker('${doc.id}')">استرجاع</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    async function restoreWorker(id) {
+      try {
+        const docRef = db.collection("trash").doc(id);
+        const doc = await docRef.get();
+
+        if (doc.exists) {
+          const data = doc.data();
+          await db.collection("workers").add(data); // استرجاع العامل
+          await docRef.delete(); // حذف من trash
+          fetchTrashedWorkers(); // تحديث الجدول
+        } else {
+          alert("لم يتم العثور على بيانات العامل.");
+        }
+      } catch (err) {
+        console.error("خطأ في الاسترجاع:", err);
+      }
+    }
+  </script>
+</body>
+</html>
