@@ -62,7 +62,7 @@ header {
 
 
 .float-banner{
-    width:50px;
+    padding-top:100px;
 }
 
 .event-image{
@@ -189,9 +189,11 @@ header {
 }
 
 .float-banner{
-    width: 45px;
+    width: 100%;
 }
-
+.event-image{
+    width: 100Px;
+}
 
 .H101 {
     font-size: 7vw; /* 5% من عرض الشاشة */
