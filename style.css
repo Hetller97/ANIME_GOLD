@@ -188,6 +188,11 @@ header {
     font-size: 12px;
 }
 
+.float-banner{
+    width: 100%;
+}
+
+
 .H101 {
     font-size: 7vw; /* 5% من عرض الشاشة */
     font-weight: bold;
