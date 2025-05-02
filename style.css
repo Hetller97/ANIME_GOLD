@@ -17,6 +17,13 @@ body {
 
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
 /* هيدر ثابت في كل الصفحات */
 header {
     position: fixed;
@@ -161,6 +168,11 @@ header {
 }
 
 @media (max-width: 600px) {
+
+header {
+    font-size: 16px;
+    padding: 8px 0;
+}
 
 .button {
     width: 80px;
