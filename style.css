@@ -63,10 +63,11 @@ header {
 
 .float-banner{
     padding-top:100px;
+    width:200px;
 }
 
 .event-image{
-    width: 400Px;
+    width: 200Px;
 }
 
   
@@ -189,7 +190,7 @@ header {
 }
 
 .float-banner{
-    width: 100%;
+    width: 100px;
 }
 .event-image{
     width: 100Px;
