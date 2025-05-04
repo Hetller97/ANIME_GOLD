@@ -39,3 +39,40 @@ if (btnTools) {
         window.location.href = "managementTools.html";
     });
 }
+
+
+
+
+db.ref("teams")
+  .orderByChild("points")
+  .limitToLast(10)
+  .once("value", (snapshot) => {
+    const topTeams = [];
+    snapshot.forEach(child => {
+      topTeams.push({ key: child.key, data: child.val() });
+    });
+
+    // ترتيب عكسي لأن limitToLast يعيد النتائج من الأقل إلى الأعلى
+    topTeams.reverse();
+
+    displayTopTeams(topTeams);
+  });
+
+  function displayTopTeams(teams) {
+    const container = document.getElementById("topTeamsContainer");
+    container.innerHTML = "";
+    
+    teams.forEach(({ key, data }, index) => {
+      const div = document.createElement("div");
+      div.className = "team-card";
+      div.innerHTML = `
+        <strong>#${index + 1} - ${data.name}</strong><br>
+        <img src="${data.logo}" alt="شعار ${data.name}" width="100"><br>
+        <strong>النقاط:</strong> ${data.points}<br>
+        <strong>الإقليم:</strong> ${data.region}<br>
+        <strong>التصنيف:</strong> ${data.rank || '---'}<br>
+      `;
+      container.appendChild(div);
+    });
+  }
+  

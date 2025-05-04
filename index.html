@@ -6,6 +6,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>أنمي غولد</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>أنمي غولد</title>
@@ -303,9 +313,43 @@
         }
 
         
+
+
+  #topTeamsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .team-card {
+    flex: 0 0 auto;
+    min-width: 200px;
+    max-width: 220px;
+    border-left: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .team-card:first-child {
+    border-left: none;
+  }
+
+
     </style>
 </head>
 <body>
+
+    <!-- Firebase App (core) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
+<!-- Firebase Database (Realtime Database) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="firebase-realtimedb.js"></script>
+<script src="script.js"></script>
     <!-- الهيدر -->
     <header>
         <div class="logo">
@@ -359,7 +403,7 @@
 
     <div class="AGDIF">
         <div style="width: 100%; text-align: center;">
-            <h1 >  نبذة عن أنمي غولد </h1>
+            <h1 >تعريف أنمي غولد </h1>
         </div>
         
             <div class="box">
@@ -381,7 +425,7 @@
               
         
     </div>
-    
+
     <div class="LIDERS">
     <div style="width: 100%; text-align: center;">
         <h1 >ثالوث مؤسسي غولد</h1>
@@ -443,6 +487,12 @@
         </div>
 
     <div class="AGDIF">
+
+
+
+        <h2>🏆 أفضل 10 فرق</h2>
+<div id="topTeamsContainer"></div>
+
 
         
 
@@ -506,8 +556,7 @@
     </div>
     
       
-    
-    <script src="script.js"></script>
+
     <div class="footer">
         © 2025 جميع الحقوق محفوظة | تصميم وبرمجة: أكازا ساما | فكرة : حمزة
     </div>

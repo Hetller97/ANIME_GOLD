@@ -17,13 +17,6 @@ body {
 
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-
 /* هيدر ثابت في كل الصفحات */
 header {
     position: fixed;
@@ -62,8 +55,7 @@ header {
 
 
 .float-banner{
-    padding-top:100px;
-    width:400px;
+    padding-top: 100PX;
 }
 
 .event-image{
@@ -170,11 +162,6 @@ header {
 
 @media (max-width: 600px) {
 
-header {
-    font-size: 16px;
-    width: 100%;
-}
-
 .button {
     width: 80px;
     height: 80px;
@@ -187,13 +174,6 @@ header {
 
 .button p {
     font-size: 12px;
-}
-
-.float-banner{
-    width: 100%;
-}
-.event-image{
-    width: 80%;
 }
 
 .H101 {
