@@ -108,17 +108,6 @@
         div.className = "team-card";
 
         div.innerHTML = `
-          <strong>اسم الفريق:</strong><br>
-          <input type="text" id="name-${key}" value="${data.name}"><br>
-          <strong>رابط الشعار:</strong><br>
-          <input type="text" id="logo-${key}" value="${data.logo}"><br>
-          <strong>الإقليم:</strong> ${data.region}<br>
-          <strong>الحالة:</strong>
-          <select id="status-${key}">
-            <option value="مفتوح" ${data.status === 'مفتوح' ? 'selected' : ''}>مفتوح</option>
-            <option value="مغلق" ${data.status === 'مغلق' ? 'selected' : ''}>مغلق</option>
-          </select><br>
-          <button onclick="saveChanges('${key}')">💾 حفظ التعديل</button><br><br>
 
           <strong>طلب تعديل يدوي:</strong><br>
           <input type="text" id="requester-${key}" placeholder="اسم الحساب">
