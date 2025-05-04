@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>أنمي غولد</title>
+  <style>
+    body {
+
+        padding: 20px;
+    }
+    input, select, button, textarea {
+      margin: 5px 0;
+      padding: 8px;
+      width: 80%;
+      max-width: 400px;
+      display: block;
+      border-radius: 5PX;
+    }
+    .team-card {
+        width: 70%;
+      border: 2px solid #f1c40f;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    button {
+      background-color: #d4af37;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #c5a128;
+    }
+    .nav-button {
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 30px;
+      width: 100%;
+    }
+
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body style="margin-top: 100PX;">
+    <header>
+        <div class="logo">
+            <a href="../index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+        </div>
+        <nav class="nav">
+            <a href="../anime_gold.html">رئيسية</a>
+            <a href="../info.html">معلومات</a>
+            <a href="../contactus.html">اتصل بنا</a>
+            
+        </nav>
+    </header>
+    <a href="TimesM.html">
+        <button>العودة لصفحة اضافة فريق</button>
+      </a>
+
+  <h2>تعديل معلومات الفرق</h2>
+
+  <input type="text" id="searchInput" placeholder="ابحث باسم الفريق أو الإقليم" oninput="filterTeams()">
+
+  <div id="teamsContainer" class="team-list"></div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD5h5LAp9bVY9Xrx0yF8PaXih4841vSgBQ",
+      authDomain: "workermanager999.firebaseapp.com",
+      databaseURL: "https://workermanager999-default-rtdb.firebaseio.com",
+      projectId: "workermanager999",
+      storageBucket: "workermanager999.appspot.com",
+      messagingSenderId: "961550697494",
+      appId: "1:961550697494:web:4339c2bfc5c874496de137",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const container = document.getElementById("teamsContainer");
+    let allTeams = [];
+
+    function renderTeams(teams) {
+      container.innerHTML = "";
+      teams.forEach(({ key, data }) => {
+        const div = document.createElement("div");
+        div.className = "team-card";
+
+        div.innerHTML = `
+          <strong>اسم الفريق:</strong><br>
+          <input type="text" id="name-${key}" value="${data.name}"><br>
+          <strong>رابط الشعار:</strong><br>
+          <input type="text" id="logo-${key}" value="${data.logo}"><br>
+          <strong>الإقليم:</strong> ${data.region}<br>
+          <strong>الحالة:</strong>
+          <select id="status-${key}">
+            <option value="مفتوح" ${data.status === 'مفتوح' ? 'selected' : ''}>مفتوح</option>
+            <option value="مغلق" ${data.status === 'مغلق' ? 'selected' : ''}>مغلق</option>
+          </select><br>
+          <button onclick="saveChanges('${key}')">💾 حفظ التعديل</button><br><br>
+
+          <strong>طلب تعديل يدوي:</strong><br>
+          <input type="text" id="requester-${key}" placeholder="اسم الحساب">
+          <textarea id="requestDesc-${key}" rows="3" placeholder="وصف التعديل المطلوب"></textarea>
+          <button onclick="sendEditRequest('${key}')">📩 إرسال الطلب</button>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    function fetchTeams() {
+      db.ref("teams").on("value", (snapshot) => {
+        allTeams = [];
+        snapshot.forEach(child => {
+          allTeams.push({ key: child.key, data: child.val() });
+        });
+        renderTeams(allTeams);
+      });
+    }
+
+    function filterTeams() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = allTeams.filter(({ data }) =>
+        data.name.toLowerCase().includes(search) ||
+        data.region.toLowerCase().includes(search)
+      );
+      renderTeams(filtered);
+    }
+
+    function saveChanges(key) {
+      const name = document.getElementById(`name-${key}`).value;
+      const logo = document.getElementById(`logo-${key}`).value;
+      const status = document.getElementById(`status-${key}`).value;
+
+      db.ref("teams/" + key).update({ name, logo, status, updatedAt: new Date().toISOString() })
+        .then(() => alert("تم حفظ التعديلات بنجاح."))
+        .catch(err => alert("حدث خطأ: " + err.message));
+    }
+
+    function sendEditRequest(key) {
+  const requester = document.getElementById(`requester-${key}`).value.trim();
+  const description = document.getElementById(`requestDesc-${key}`).value.trim();
+
+  if (!requester || !description) {
+    alert("يرجى تعبئة اسم الحساب ووصف التعديل.");
+    return;
+  }
+
+  const request = {
+    teamKey: key,
+    requestedBy: requester,
+    description,
+    createdAt: new Date().toISOString()
+  };
+
+  // ✅ إرسال الطلب إلى demonds/editTimesDemonds
+  db.ref("demonds/editTimesDemonds").push(request)
+    .then(() => {
+      alert("تم إرسال طلب التعديل.");
+      document.getElementById(`requester-${key}`).value = "";
+      document.getElementById(`requestDesc-${key}`).value = "";
+    })
+    .catch(err => alert("خطأ أثناء إرسال الطلب: " + err.message));
+}
+
+
+    fetchTeams();
+  </script>
+
+</body>
+</html>
