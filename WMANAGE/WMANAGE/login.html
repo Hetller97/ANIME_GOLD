@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>أنمي غولد</title>
+  <meta charset="UTF-8" />
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- الهيدر -->
+  <header>
+    <div class="logo">
+        <a href="../index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+    </div>
+    <nav class="nav">
+        <a href="../anime_gold.html">رئيسية</a>
+        <a href="../info.html">معلومات</a>
+        <a href="../contactus.html">اتصل بنا</a>
+        
+    </nav>
+</header>
+
+
+<div class="login-container">
+    <h2>أدخل رمز الدخول</h2>
+    <p style="font-size: x-small; color: aliceblue;">يمكنك اخد رمز الدخول من ادارة الموقع الالكتروني أو من عضو الادارة أكازا</p>
+    <input type="password" id="accessCode" placeholder="رمز الدخول" />
+    <button onclick="checkAccess()">دخول</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
