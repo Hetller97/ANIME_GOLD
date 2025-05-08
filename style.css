@@ -172,6 +172,10 @@ header {
     height: 40px;
 }
 
+    .event-image{
+    width: 250px;
+    }
+
 .button p {
     font-size: 12px;
 }
