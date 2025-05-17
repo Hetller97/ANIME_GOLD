@@ -172,10 +172,6 @@ header {
     height: 40px;
 }
 
-    .event-image{
-    width: 200px;
-    }
-
 .button p {
     font-size: 12px;
 }
@@ -184,6 +180,10 @@ header {
     font-size: 7vw; /* 5% من عرض الشاشة */
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+.event-image{
+    width: 250PX;
 }
 
 .color{
