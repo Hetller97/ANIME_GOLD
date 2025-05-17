@@ -11,7 +11,7 @@
 
     <title>أنمي غولد</title>
   <meta charset="UTF-8" />
-  <title>إدارة العمال</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="../style.css" />
 </head>
@@ -37,28 +37,30 @@
       <button onclick="showAddForm()">إضافة عامل جديد</button>
       <button onclick="window.location.href = 'trash.html'" style="background-color: #f44336; color: white;">عرض العمال المحذوفين</button>
     </div>
+        <div id="workerForm" style="display:none;">
+          <h3 id="formTitle">إضافة عامل</h3>
+          <input class="inp" type="text" id="name" placeholder="اسم الحساب" />
+          <input class="inp" type="text" id="bankCode" placeholder="كود البطاقة البنكية" />
+          <input class="inp" type="text" id="rank" placeholder="الرتبة" />
+          <textarea class="inp" id="notes" placeholder="ملاحظات..."></textarea>
+          <button onclick="saveWorker()">حفظ</button>
+          <button onclick="hideForm()">إلغاء</button>
+        </div>
+
     <table id="workersTable">
       <thead>
         <tr>
-          <th>الاسم</th>
-          <th>الكود البنكي</th>
-          <th>الرتبة</th>
-          <th>الكود الخاص</th>
-          <th>ملاحظات</th>
-          <th>إجراءات</th>
+          <th data-label="الاسم">الاسم</th>
+          <th data-label="الكود البنكي">الكود البنكي</th>
+          <th data-label="الرتبة">الرتبة</th>
+          <th data-label="الكود الخاص">الكود الخاص</th>
+          <th data-label="ملاحظات">ملاحظات</th>
+          <th data-label="إجراءات">إجراءات</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-    <div id="workerForm" style="display:none;">
-      <h3 id="formTitle">إضافة عامل</h3>
-      <input type="text" id="name" placeholder="اسم الحساب" />
-      <input type="text" id="bankCode" placeholder="كود البطاقة البنكية" />
-      <input type="text" id="rank" placeholder="الرتبة" />
-      <textarea id="notes" placeholder="ملاحظات..."></textarea>
-      <button onclick="saveWorker()">حفظ</button>
-      <button onclick="hideForm()">إلغاء</button>
-    </div>
+    
   </div>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
