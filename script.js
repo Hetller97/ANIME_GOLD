@@ -76,3 +76,18 @@ db.ref("teams")
     });
   }
   
+// نافذة الحدث
+
+ 
+
+  
+  function toggleEventModal() {
+    const modal = document.getElementById("event-modal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+  }
+
+  function closeEventModal() {
+    const modal = document.getElementById("event-modal");
+    modal.style.display = "none";
+  }
+
