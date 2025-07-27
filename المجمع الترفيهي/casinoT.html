@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الرهانات</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* تنسيقات عامة */
+body {
+  font-family: 'Tahoma', sans-serif;
+  direction: rtl;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+/* تنسيقات العناوين والمقاطع */
+.section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  margin-top: 0;
+  color: #222;
+}
+
+/* الحقول */
+input, select, button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* الأزرار */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.copy-btn {
+  background-color: #28a745;
+}
+
+.copy-btn:hover {
+  background-color: #1f7c36;
+}
+
+/* جدول الرهانات */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 15px;
+}
+
+th {
+  background-color: #f1f1f1;
+}
+
+td button {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* مربع النتائج */
+.results {
+  background: #eafbea;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+}
+
+/* إخفاء العناصر */
+.hidden {
+  display: none;
+}
+
+/* استجابة الهواتف */
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  td {
+    padding: 10px;
+    position: relative;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+
+/* نافذة التعديل */
+#editModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background: white;
+  width: 70%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* خلفية ضبابية */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  display: none;
+}
+  </style>
+</head>
+<body style="padding-top: 100PX;">
+        <!-- الهيدر -->
+        <header>
+            <div class="logo">
+                <a href="index.html" ><img src="https://res.cloudinary.com/doe1glpxm/image/upload/v1737294905/icon_hqujqg.png" alt="Logo"></a>
+            </div>
+            <nav class="nav">
+                <a href="anime_gold.html">رئيسية</a>
+                <a href="info.html">معلومات</a>
+                <a href="contactus.html">اتصل بنا</a>
+                
+            </nav>
+        </header>
+
+  <div class="section">
+    <h2>إدخال رهان جديد</h2>
+    <label>رقم المسابقة:</label>
+    <input type="number" id="competitionNumber" placeholder="مثال: 1" /><br>
+    <label>كود اللاعب:</label>
+    <input type="text" id="playerCode" placeholder="مثل A000A أو B000B" /><br>
+    <label>مبلغ الرهان:</label>
+    <input type="number" id="betAmount" placeholder="مثال: 100" /><br>
+    <label>الفريق المراهن عليه:</label>
+    <input type="text" id="chosenTeam" placeholder="اسم الفريق" /><br>
+    <button class="btn" onclick="addBet()">إرسال الرهان</button>
+  </div>
+
+  <div class="section">
+    <h2>جدول الرهانات</h2>
+    <button class="btn" onclick="showEndSection()">🔚 إنهاء الرهانات</button>
+    <table id="betsTable">
+      <thead>
+        <tr>
+          <th>رقم الرهان</th>
+          <th>كود اللاعب</th>
+          <th>المبلغ</th>
+          <th>الفريق</th>
+          <th>تعديل</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+      <tbody id="betsBody"></tbody>
+    </table>
+  </div>
+
+  <div id="endSection" class="section hidden">
+    <h2>💡 حساب النتائج</h2>
+    <label>اختر الفريق الفائز:</label>
+    <input type="text" id="winningTeam" placeholder="اسم الفريق الفائز" />
+    <button class="btn" onclick="calculateResults()">احسب النتائج</button>
+    <div class="results hidden" id="resultsBox">
+      <h3>النتائج:</h3>
+      <pre id="resultsText"></pre>
+      <button class="btn copy-btn" onclick="copyResults()">📋 نسخ النتائج</button>
+    </div>
+  </div>
+
+
+  <div id="editModal" class="section hidden">
+    <h3>تعديل الرهان</h3>
+    <input type="text" id="editCode" placeholder="كود اللاعب" />
+    <input type="number" id="editAmount" placeholder="مبلغ الرهان" />
+    <input type="text" id="editTeam" placeholder="الفريق" />
+    <button class="btn" onclick="saveEdit()">💾 حفظ التعديل</button>
+    <button class="btn" onclick="closeEditModal()">❌ إلغاء</button>
+  </div>
+  <div id="overlay" onclick="closeEditModal()"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBqUtqQQQSMw_3HkhlV4jaibHCz-UgQdh8",
+  authDomain: "storegold-649cb.firebaseapp.com",
+  databaseURL: "https://storegold-649cb-default-rtdb.firebaseio.com",
+  projectId: "storegold-649cb",
+  storageBucket: "storegold-649cb.firebasestorage.app",
+  messagingSenderId: "149670720956",
+  appId: "1:149670720956:web:4e13b02221265e0e65e7b9",
+  measurementId: "G-C6CKG3EWVB"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+
+
+
+    let editingBetId = null;
+    let competition = null;
+    let order = 1;
+    const bets = [];
+
+    function addBet() {
+      const compNum = document.getElementById("competitionNumber").value.trim();
+      if (competition === null && compNum !== "") competition = compNum;
+
+      const code = document.getElementById("playerCode").value.trim();
+      const amount = parseFloat(document.getElementById("betAmount").value);
+      const team = document.getElementById("chosenTeam").value.trim();
+
+      if (!code || !amount || !team || !competition) return alert("يرجى ملء جميع الحقول.");
+
+      const betId = parseInt(competition) * 10000 + order;
+      const bet = { id: betId, code, amount, team };
+      db.ref(`bets/${betId}`).set(bet);
+
+      bets.push(bet);
+      appendToTable(bet);
+      order++;
+      document.getElementById("playerCode").value = "";
+      document.getElementById("betAmount").value = "";
+      document.getElementById("chosenTeam").value = "";
+    }
+
+    function appendToTable(bet) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${bet.id}</td>
+        <td>${bet.code}</td>
+        <td>${bet.amount}</td>
+        <td>${bet.team}</td>
+        <td><button onclick="editBet(${bet.id})">✏️</button></td>
+        <td><button onclick="deleteBet(${bet.id})">🗑️</button></td>
+      `;
+      document.getElementById("betsBody").appendChild(row);
+    }
+
+    function deleteBet(id) {
+  if (!confirm("هل أنت متأكد من حذف هذا الرهان؟")) return;
+
+  db.ref(`bets/${id}`).remove(() => {
+    location.reload(); // إعادة تحميل الصفحة بعد الحذف
+  });
+}
+
+
+    function showEndSection() {
+      document.getElementById("endSection").classList.remove("hidden");
+    }
+
+    function calculateResults() {
+      const winning = document.getElementById("winningTeam").value.trim();
+      if (!winning) return alert("يرجى إدخال الفريق الفائز.");
+
+      const betsRef = db.ref("bets");
+      betsRef.once("value", snapshot => {
+        const allBets = snapshot.val();
+        let total = 0, totalWin = 0;
+        const resultLines = [];
+
+        for (let id in allBets) {
+          total += allBets[id].amount;
+          if (allBets[id].team === winning) totalWin += allBets[id].amount;
+        }
+
+        for (let id in allBets) {
+          const b = allBets[id];
+          if (b.team === winning) {
+            const gain = ((b.amount / totalWin) * (total * 0.90)).toFixed(2);
+            resultLines.push(`${b.code} : +${gain}`);
+          } else {
+            resultLines.push(`${b.code} : -${b.amount}`);
+          }
+        }
+
+        const tax = (total * 0.10).toFixed(2);
+        resultLines.push("ــــــــــــــــــــــــــــــــــ");
+        resultLines.push(`💸 الضريبة الإجمالية: ${tax}`);
+
+        document.getElementById("resultsText").textContent = resultLines.join("\n");
+        document.getElementById("resultsBox").classList.remove("hidden");
+      });
+    }
+
+    function copyResults() {
+      const text = document.getElementById("resultsText").textContent;
+      navigator.clipboard.writeText(text);
+      alert("تم نسخ النتائج!");
+    }
+
+
+    // زر الحذف و التعديل 
+    function editBet(id) {
+  db.ref(`bets/${id}`).once("value", snapshot => {
+    const data = snapshot.val();
+    if (data) {
+      editingBetId = id;
+      document.getElementById("editCode").value = data.code;
+      document.getElementById("editAmount").value = data.amount;
+      document.getElementById("editTeam").value = data.team;
+      document.getElementById("editModal").classList.remove("hidden");
+      document.getElementById("overlay").style.display = "block";
+    }
+  });
+}
+
+
+function saveEdit() {
+  const newCode = document.getElementById("editCode").value.trim();
+  const newAmount = parseFloat(document.getElementById("editAmount").value);
+  const newTeam = document.getElementById("editTeam").value.trim();
+
+  if (!newCode || !newAmount || !newTeam) {
+    alert("يرجى ملء جميع الحقول!");
+    return;
+  }
+
+  const updated = { id: editingBetId, code: newCode, amount: newAmount, team: newTeam };
+  db.ref(`bets/${editingBetId}`).set(updated, (err) => {
+    if (!err) {
+      alert("تم التعديل بنجاح!");
+      location.reload(); // لإعادة تحميل الجدول بالتحديثات
+    }
+  });
+}
+
+function closeEditModal() {
+  editingBetId = null;
+  document.getElementById("editModal").classList.add("hidden");
+  document.getElementById("overlay").style.display = "none";
+}
+
+window.onload = function () {
+  const compInput = document.getElementById("competitionNumber");
+
+  db.ref("bets").once("value", snapshot => {
+    const data = snapshot.val();
+    if (!data) return;
+
+    // ترتيب الرهانات حسب الرقم التصاعدي
+    const sortedBets = Object.values(data).sort((a, b) => a.id - b.id);
+
+    // استخراج رقم المسابقة والعدد الحالي
+    if (sortedBets.length > 0) {
+      const firstId = sortedBets[0].id;
+      competition = Math.floor(firstId / 10000); // الرقم في عشرات الآلاف
+      compInput.value = competition;
+
+      const lastId = sortedBets[sortedBets.length - 1].id;
+      order = lastId % 10000 + 1; // الرقم التالي
+    }
+
+    // عرض الرهانات في الجدول
+    sortedBets.forEach(bet => {
+      bets.push(bet);
+      appendToTable(bet);
+    });
+  });
+}
+
+
+
+  </script>
+</body>
+</html>
